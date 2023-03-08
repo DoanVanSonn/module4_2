@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Bootstrap Multiple Item Product Carousel</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Open+Sans">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+            integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+            integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+            crossorigin="anonymous"></script>
+    <style>
+        body {
+            background: #e2eaef;
+            font-family: "Open Sans", sans-serif;
+        }
+
+        h2 {
+            color: #000;
+            font-size: 26px;
+            font-weight: 300;
+            text-align: center;
+            text-transform: uppercase;
+            position: relative;
+            margin: 30px 0 60px;
+        }
+
+        h2::after {
+            content: "";
+            width: 100px;
+            position: absolute;
+            margin: 0 auto;
+            height: 4px;
+            border-radius: 1px;
+            background: #7ac400;
+            left: 0;
+            right: 0;
+            bottom: -20px;
+        }
+
+        .carousel {
+            margin: 50px auto;
+            padding: 0 70px;
+        }
+
+        .carousel .item {
+            color: #747d89;
+            min-height: 325px;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .carousel .thumb-wrapper {
+            padding: 25px 15px;
+            background: #fff;
+            border-radius: 6px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        .carousel .item .img-box {
+            height: 120px;
+            margin-bottom: 20px;
+            width: 100%;
+            position: relative;
+        }
+
+        .carousel .item img {
+            max-width: 100%;
+            max-height: 100%;
+            display: inline-block;
+            position: absolute;
+            bottom: 0;
+            margin: 0 auto;
+            left: 0;
+            right: 0;
+        }
+
+        .carousel .item h4 {
+            font-size: 18px;
+        }
+
+        .carousel .item h4, .carousel .item p, .carousel .item ul {
+            margin-bottom: 5px;
+        }
+
+        .carousel .thumb-content .btn {
+            color: #7ac400;
+            font-size: 11px;
+            text-transform: uppercase;
+            font-weight: bold;
+            background: none;
+            border: 1px solid #7ac400;
+            padding: 6px 14px;
+            margin-top: 5px;
+            line-height: 16px;
+            border-radius: 20px;
+        }
+
+        .carousel .thumb-content .btn:hover, .carousel .thumb-content .btn:focus {
+            color: #fff;
+            background: #7ac400;
+            box-shadow: none;
+        }
+
+        .carousel .thumb-content .btn i {
+            font-size: 14px;
+            font-weight: bold;
+            margin-left: 5px;
+        }
+
+        .carousel .item-price {
+            font-size: 13px;
+            padding: 2px 0;
+        }
+
+        .carousel .item-price strike {
+            opacity: 0.7;
+            margin-right: 5px;
+        }
+
+        .carousel-control-prev, .carousel-control-next {
+            height: 44px;
+            width: 40px;
+            background: #7ac400;
+            margin: auto 0;
+            border-radius: 4px;
+            opacity: 0.8;
+        }
+
+        .carousel-control-prev:hover, .carousel-control-next:hover {
+            background: #78bf00;
+            opacity: 1;
+        }
+
+        .carousel-control-prev i, .carousel-control-next i {
+            font-size: 36px;
+            position: absolute;
+            top: 50%;
+            display: inline-block;
+            margin: -19px 0 0 0;
+            z-index: 5;
+            left: 0;
+            right: 0;
+            color: #fff;
+            text-shadow: none;
+            font-weight: bold;
+        }
+
+        .carousel-control-prev i {
+            margin-left: -2px;
+        }
+
+        .carousel-control-next i {
+            margin-right: -4px;
+        }
+
+        .carousel-indicators {
+            bottom: -50px;
+        }
+
+        .carousel-indicators li, .carousel-indicators li.active {
+            width: 10px;
+            height: 10px;
+            margin: 4px;
+            border-radius: 50%;
+            border: none;
+        }
+
+        .carousel-indicators li {
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .carousel-indicators li.active {
+            background: rgba(0, 0, 0, 0.6);
+        }
+
+        .carousel .wish-icon {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            z-index: 99;
+            cursor: pointer;
+            font-size: 16px;
+            color: #abb0b8;
+        }
+
+        .carousel .wish-icon .fa-heart {
+            color: #ff6161;
+        }
+
+        .star-rating li {
+            padding: 0;
+        }
+
+        .star-rating i {
+            font-size: 14px;
+            color: #ffc000;
+        }
+    </style>
+    <script>
+        $(document).ready(function () {
+            $(".wish-icon i").click(function () {
+                $(this).toggleClass("fa-heart fa-heart-o");
+            });
+        });
+    </script>
+</head>
+<body>
+<div class="container-xl">
+    <div class="row">
+        <div class="col-md-12">
+            <h2><b>Products</b></h2>
+            <a th:href="@{/shopping-cart}">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart"
+                     viewBox="0 0 16 16">
+                    <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                </svg>
+            </a>
+            <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="0">
+                <!-- Carousel indicators -->
+                <ol class="carousel-indicators">
+                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#myCarousel" data-slide-to="1"></li>
+                    <li data-target="#myCarousel" data-slide-to="2"></li>
+                </ol>
+                <!-- Wrapper for carousel items -->
+                <div class="carousel-inner">
+                    <div class="item carousel-item active">
+                        <div class="row">
+                            <div class="col-sm-3" th:each="product: ${products}">
+                                <div class="thumb-wrapper">
+                                    <span class="wish-icon"><i class="fa fa-heart-o"></i></span>
+                                    <div class="img-box">
+                                        <img th:src="${product.pictureProduct}"
+                                             class="img-fluid" alt="">
+                                    </div>
+                                    <div class="thumb-content">
+                                        <h4 th:text="${product.nameProduct}" id="name-product"></h4>
+                                        <div class="star-rating">
+                                            <ul class="list-inline">
+                                                <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
+                                            </ul>
+                                        </div>
+                                        <p class="item-price" th:text="${product.priceProduct}" id="price-product"></p>
+                                        <p class="item-price" th:text="${product.descriptionProduct}"
+                                           id="description-product"></p>
+                                        <p class="item-price" th:text="${product.idProduct}" id="id-product" hidden></p>
+                                        <a th:href="@{/add/__${product.idProduct}__(action='list')}"
+                                           class="btn btn-primary">Add to Cart</a>
+                                        <button type="button"
+                                                class="btn btn-primary"
+                                                data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                                th:onclick="getObjectProduct([[${product.idProduct}]],
+                                                                             [[${product.nameProduct}]],
+                                                                             [[${product.priceProduct}]],
+                                                                             [[${product.descriptionProduct}]],
+                                                                             [[${product.pictureProduct}]]
+                                                                             )"
+                                        >Update product
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- Carousel controls -->
+                <a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                <a class="carousel-control-next" href="#myCarousel" data-slide="next">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal delete -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <form th:action="@{/update}" method="post" th:object="${product}">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Cặp nhật thông tin sản phẩm</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <!--                gửi lên controller-->
+                <div class="modal-body" style="text-align: center">
+                    <label hidden>
+                        <p>id</p>
+                        <input type="text" id="id" name="id">
+                    </label>
+                    <br>
+                    <label>
+                        <p>nameProduct</p>
+                        <input type="text" id="name" name="name" >
+                    </label>
+                    <br>
+                    <label>
+                        <p> price product</p>
+                        <input type="text" id="price" name="price" >
+                    </label>
+                    <br>
+                    <label>
+                        <p>descriptionProduct</p>
+                        <input type="text" id="description"  name="description">
+                    </label>
+                    <br>
+                    <label hidden>
+                        <p>picture</p>
+                        <input type="text" id="picture" name="picture">
+                    </label>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">CLOSE</button>
+                    <button type="submit" class="btn btn-primary">UPDATE</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script>
+    function getObjectProduct(id, name, price, description, picture) {
+        document.getElementById("id").value = id;
+        document.getElementById("name").value = name;
+        document.getElementById("price").value = price;
+        document.getElementById("description").value = description;
+        document.getElementById("description").value = description;
+        document.getElementById("picture").value = picture;
+    }
+    // function updateProductAjax(){
+    //     let id = $("#id").val();
+    //     let name = $("#name").val();
+    //     let price = $("#price").val();
+    //     let description = $("#description").val();
+    //     let picture = $("#picture").val();
+    //     let product =  {
+    //         id: id,
+    //         name: name,
+    //         price: price,
+    //         description: description,
+    //         picture: picture
+    //     };
+    //     $.ajax({
+    //         headers: {
+    //             'Accept': 'application/json',
+    //             'Content-Type': 'application/json'
+    //         },
+    //
+    //         data: JSON.stringify(product),
+    //         type: "put",
+    //         url: "http://localhost:8080/api/product/update-product",
+    //         success: console.log('success'),
+    //     })
+    // }
+</script>
+</html>
